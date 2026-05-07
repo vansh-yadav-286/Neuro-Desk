@@ -25,6 +25,11 @@ app.get('/health', (req, res) => {
   res.json({ status: 'Server is running', timestamp: new Date().toISOString() })
 })
 
+// Root - redirect to health for quick verification
+app.get('/', (req, res) => {
+  res.redirect('/health')
+})
+
 // API Routes
 app.use('/api/upload', uploadRoutes)
 app.use('/api/quiz', quizRoutes)
