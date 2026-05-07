@@ -33,6 +33,7 @@ app.use('/api/sessions', sessionRoutes)
 
 // Error handling middleware
 app.use((err, req, res, next) => {
+  void next
   console.error('Error:', err)
   res.status(err.status || 500).json({
     error: err.message || 'Internal server error',

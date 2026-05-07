@@ -38,6 +38,9 @@ public/models/uploads/
 logs/
 *.log
 
+# TypeScript incremental artifacts
+*.tsbuildinfo
+
 # Python
 __pycache__/
 *.py[cod]

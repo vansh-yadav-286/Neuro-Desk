@@ -61,7 +61,7 @@ export default function Signup() {
         id: Math.random().toString(36).substr(2, 9),
         email: formData.email,
         name: formData.name,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${formData.email}`,
+        avatar: `https://api.dicebear.com/7.x/avataaars/png?seed=${formData.email}`,
       }
 
       localStorage.setItem('user', JSON.stringify(userData))

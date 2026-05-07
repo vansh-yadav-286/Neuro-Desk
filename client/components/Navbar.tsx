@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import AnimatedButton from './AnimatedButton'
@@ -81,9 +82,11 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg glass hover:bg-opacity-20 transition-all"
               >
-                <img
-                  src={user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.email}`}
+                <Image
+                  src={user.avatar || `https://api.dicebear.com/7.x/avataaars/png?seed=${user.email}`}
                   alt={user.name}
+                  width={32}
+                  height={32}
                   className="w-8 h-8 rounded-full"
                 />
                 <span className="text-sm font-semibold hidden lg:inline">{user.name}</span>
@@ -174,9 +177,11 @@ export default function Navbar() {
             <>
               <div className="px-4 py-3 bg-slate-800/50 rounded-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <img
-                    src={user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.email}`}
+                  <Image
+                    src={user.avatar || `https://api.dicebear.com/7.x/avataaars/png?seed=${user.email}`}
                     alt={user.name}
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full"
                   />
                   <div>

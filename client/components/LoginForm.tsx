@@ -42,7 +42,7 @@ export default function LoginForm() {
         id: Math.random().toString(36).substr(2, 9),
         email,
         name: email.split('@')[0],
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
+        avatar: `https://api.dicebear.com/7.x/avataaars/png?seed=${email}`,
       }
 
       localStorage.setItem('user', JSON.stringify(userData))

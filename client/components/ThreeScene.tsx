@@ -11,14 +11,15 @@ export default function ThreeScene({ modelType }: ThreeSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!containerRef.current) return
+    const container = containerRef.current
+    if (!container) return
 
     const scene = new THREE.Scene()
     scene.background = new THREE.Color(0x0f172a)
 
     const camera = new THREE.PerspectiveCamera(
       75,
-      containerRef.current.clientWidth / containerRef.current.clientHeight,
+      container.clientWidth / container.clientHeight,
       0.1,
       1000
     )
@@ -31,13 +32,13 @@ export default function ThreeScene({ modelType }: ThreeSceneProps) {
     })
 
     renderer.setSize(
-      containerRef.current.clientWidth,
-      containerRef.current.clientHeight
+      container.clientWidth,
+      container.clientHeight
     )
 
     renderer.shadowMap.enabled = true
 
-    containerRef.current.appendChild(renderer.domElement)
+    container.appendChild(renderer.domElement)
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 1)
     scene.add(ambientLight)
@@ -100,10 +101,10 @@ export default function ThreeScene({ modelType }: ThreeSceneProps) {
     animate()
 
     const handleResize = () => {
-      if (!containerRef.current) return
+      if (!container) return
 
-      const width = containerRef.current.clientWidth
-      const height = containerRef.current.clientHeight
+      const width = container.clientWidth
+      const height = container.clientHeight
 
       camera.aspect = width / height
       camera.updateProjectionMatrix()
@@ -125,8 +126,8 @@ export default function ThreeScene({ modelType }: ThreeSceneProps) {
       dragonTexture.dispose()
       renderer.dispose()
 
-      if (containerRef.current?.contains(renderer.domElement)) {
-        containerRef.current.removeChild(renderer.domElement)
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement)
       }
     }
   }, [modelType])
