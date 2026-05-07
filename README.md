@@ -1,4 +1,4 @@
-# NeuroLearn 3D
+# Neuro Desk
 
 Transform education with interactive 3D visualization, AI-powered learning, and voice assistance.
 
