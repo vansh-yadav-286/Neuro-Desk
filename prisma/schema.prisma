@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  password  String
+  name      String?
+  avatar    String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  sessions  Session[]
+  progress  Progress[]
+}
+
+model Content {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  topic       String
+  modelType   String     @default("generic")
+  fileUrl     String
+  ocrText     String?    @db.Text
+  keyPoints   String[]   @default([])
+  quizzes     Quiz[]
+  sessions    Session[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Session {
+  id         String     @id @default(cuid())
+  userId     String
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contentId  String
+  content    Content    @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  progressPercentage Int @default(0)
+  startedAt  DateTime   @default(now())
+  lastAccess DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  progress   Progress[]
+}
+
+model Progress {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  score     Int?
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Quiz {
+  id        String        @id @default(cuid())
+  contentId String
+  content   Content       @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  title     String
+  questions Question[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model Question {
+  id           String   @id @default(cuid())
+  quizId       String
+  quiz         Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  question     String
+  options      String[]
+  correctAnswer Int
+  explanation  String?
+  difficulty   String   @default("medium")
+  createdAt    DateTime @default(now())
+}
