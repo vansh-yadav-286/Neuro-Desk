@@ -1,4 +1,4 @@
-# NeuroLearn 3D - README
+# NeuroLearn 3D
 
 Transform education with interactive 3D visualization, AI-powered learning, and voice assistance.
 
