@@ -211,8 +211,7 @@ MIT License - see LICENSE file for details
 
 ## 🙋 Support
 
-- 📧 Email: support@neurolearn.com
-- 💬 Discord: [Join our community](https://discord.gg/neurolearn)
+- 📧 Email: vanshyadavy286@gmail.com
 - 🐛 Issues: [GitHub Issues](https://github.com/neurolearn/3d/issues)
 
 ## 🎓 Learning Resources
